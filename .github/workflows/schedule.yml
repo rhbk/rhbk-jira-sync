@@ -17,5 +17,7 @@ jobs:
           python -m pip install requests jira
       - run:
           python RunUpdate.py
+        env:
+          JIRA_PAT: ${{ secrets.JIRA_PAT }}
       - run:
           cat GitToJira.log >> $GITHUB_STEP_SUMMARY
