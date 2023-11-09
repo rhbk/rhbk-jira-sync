@@ -9,12 +9,14 @@ from GitHubIssueObject import IntegratedIssue
 from GitHubIssueObject import ConfigDigest
 import logging
 import datetime
+import sys
 
 # Loading configuration for the run
 config = ConfigDigest()
 # Configuring logging to GitToJira.log with level set in the config file (ERROR, WARN, INFO, DEBUG)
 # TODO: Add configuration of the name of the logging file
 logging.basicConfig(filename='GitToJira.log', encoding='utf-8', level=config.logLevel)
+logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 try:
     # Connecting to the configured JIRA instance
     jira = JIRA(config.jiraBaseUrl, token_auth=config.jiraToken)
@@ -57,3 +59,4 @@ try:
 
 except Exception as error:
     logging.error(error)
+    sys.exit(1)
