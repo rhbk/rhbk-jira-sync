@@ -1,0 +1,30 @@
+{
+    "areaMapper" : 
+        {
+            "team/store" : 1399, 
+            "team/core" : 1404,
+            "team/cloud-native" : 1462,
+            "team/continuous-testing" : 1403,
+            "team/ui" : 1401
+        }
+    ,
+    "statusMapper" : 
+        {
+            "New" : "11", 
+            "Backlog" : "21", 
+            "To Do" : "31", 
+            "In Progress" : "41",
+            "Review" : "51",
+            "Closed" : "61"
+        },
+    "gitHubBaseUrl" : "https://api.github.com/repos",
+    "gitHubOrgName" : "/keycloak",
+    "gitHubRepository" : "/keycloak",
+    "gitHubLinkBaseUrl" : "https://github.com/{}/{}/issues/{}",
+    "jiraBaseUrl" : "https://issues.redhat.com",
+    "jiraGitPrefix" : "GHI#",
+    "jiraGitSuffix" : "#",
+    "jiraProject" : "JIRAPLAY",
+    "loggingLevel" : "INFO",
+    "jiraUpdateQuery" : "Project = {} AND Summary ~ '{}'"
+}
