@@ -26,5 +26,5 @@
     "jiraGitSuffix" : "#",
     "jiraProject" : "JIRAPLAY",
     "loggingLevel" : "INFO",
-    "jiraUpdateQuery" : "Project = {} AND Summary ~ '{}'"
+    "jiraUpdateQuery" : "Project = {} AND Summary ~ '{}' AND (resolutiondate >= -30d OR status != Closed)"
 }
