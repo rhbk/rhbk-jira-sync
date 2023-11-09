@@ -9,6 +9,7 @@ class IntegratedIssue:
         self.number = number
         self.labels = []
         self.url = url
+        self.team = ""
         self.resolveStatus(assignee, assignees, state)
         for x in labels:
             self.labels.append(x["name"])

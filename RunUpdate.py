@@ -40,9 +40,9 @@ try:
                             'project': {'key':config.jiraProject},
                             'summary': "[{}{}{}] {}".format(config.jiraGitPrefix, ghIssue.number, config.jiraGitSuffix, ghIssue.title),
                             'description' : str(ghIssue.body),
-                            'customfield_12313240' : str(ghIssue.team),
                             'labels' : ghIssue.resolveLabels([]),
                         }
+            if ghIssue.team != "":jiraIssue['customfield_12313240'] = str(ghIssue.team)
             jiraIssue["labels"] = ghIssue.resolveLabels(issue.fields.labels)
             # Checking, if the link to the original GitHub Issue is already in JIRA, otherwise adding it. This needs to be done to avoiding duplicated links
             issueGitHubLink = config.gitHubLinkBaseUrl.format(config.gitHubOrgName, config.gitHubRepository, ghIssue.number)
