@@ -10,7 +10,7 @@ class IntegratedIssue:
         self.labels = []
         self.url = url
         self.team = ""
-        self.resolveStatus(assignee, assignees, state)
+        self.status = state
         for x in labels:
             self.labels.append(x["name"])
         self.resolveTeam(mapper)
@@ -19,15 +19,6 @@ class IntegratedIssue:
         for label in self.labels:
             if label in mapper.keys():
                 self.team = mapper[label]
-    
-    def resolveStatus(self, assignee, assignees, state):
-        if state == "Closed":
-            self.status = "Closed"
-            return
-        elif assignee or assignees:
-            self.status = "In Progress"
-        else:
-            self.status = "To Do"
 
     def resolveLabels(self, currentLabels):
         labels = []

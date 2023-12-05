@@ -55,8 +55,8 @@ try:
                 jira.add_simple_link(issue, {"url":issueGitHubLink, "title":"Link to original GitHub issue"})
             #Updating JIRA issue
             issue.update(jiraIssue)
-            if issue.fields.status.name != ghIssue.status:
-                jira.transition_issue(issue, config.statusMapper[ghIssue.status])
+            if (issue.fields.status.name != "Closed" and ghIssue.status == "closed"):
+                jira.transition_issue(issue, config.statusMapper["Closed"], resolution={'name':'Done'})
             logging.info("GitHub issue number {} succesfully updated under JIRA issue {}".format(ghIssue.number, issue.key))
     jira.close()
     logging.info("Integration run succesfull!")
