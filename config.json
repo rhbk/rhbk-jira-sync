@@ -24,7 +24,7 @@
     "jiraBaseUrl" : "https://issues.redhat.com",
     "jiraGitPrefix" : "GHI#",
     "jiraGitSuffix" : "",
-    "jiraProject" : "JIRAPLAY",
+    "jiraProject" : "RHBK",
     "loggingLevel" : "INFO",
     "jiraUpdateQuery" : "Project = {} AND Summary ~ '{}' AND (resolutiondate >= -30d OR status != Closed)"
 }
