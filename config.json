@@ -6,16 +6,6 @@
             "team/cloud-native" : 1462,
             "team/continuous-testing" : 1403,
             "team/ui" : 1401
-        }
-    ,
-    "statusMapper" : 
-        {
-            "New" : "11", 
-            "Backlog" : "21", 
-            "To Do" : "31", 
-            "In Progress" : "41",
-            "Review" : "51",
-            "Closed" : "61"
         },
     "gitHubBaseUrl" : "https://api.github.com/repos",
     "gitHubOrgName" : "/keycloak",

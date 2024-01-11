@@ -44,7 +44,6 @@ class ConfigDigest:
         self.jiraGitPrefix = config["jiraGitPrefix"]
         self.jiraGitSuffix = config["jiraGitSuffix"]
         self.jiraProject = config["jiraProject"]
-        self.statusMapper = config["statusMapper"]
         self.logLevel = config["loggingLevel"]
         self.jiraUpdateQuery = config["jiraUpdateQuery"]
         self.gitHubLinkBaseUrl = config["gitHubLinkBaseUrl"]

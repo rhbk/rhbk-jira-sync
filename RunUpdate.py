@@ -56,11 +56,12 @@ try:
             #Updating JIRA issue
             issue.update(jiraIssue)
             if (issue.fields.status.name != "Closed" and ghIssue.status == "closed"):
-                jira.transition_issue(issue, config.statusMapper["Closed"], resolution={'name':'Done'})
+                jira.transition_issue(issue, "Closed")
             logging.info("GitHub issue number {} succesfully updated under JIRA issue {}".format(ghIssue.number, issue.key))
     jira.close()
     logging.info("Integration run succesfull!")
 
 except Exception as error:
     logging.error(error)
+    jira.close()
     sys.exit(1)
