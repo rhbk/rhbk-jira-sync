@@ -10,6 +10,7 @@ from GitHubIssueObject import ConfigDigest
 import logging
 import datetime
 import sys
+import md_to_jira
 
 # Loading configuration for the run
 config = ConfigDigest()
@@ -27,14 +28,15 @@ try:
     for issue in search:
         firstIndex = issue.fields.summary.find("#") + 1
         lastIndex = issue.fields.summary.find("]")
-        response = requests.get("{}{}{}/issues/{}".format(config.gitBaseUrl, config.gitHubOrgName, "/keycloak", issue.fields.summary[firstIndex:lastIndex]))
+        response = requests.get("{}{}{}/issues/{}".format(config.gitBaseUrl, config.gitHubOrgName, "/keycloak", issue.fields.summary[firstIndex:lastIndex]), headers={'Accept':'application/vnd.github.full+json'})
         if response.status_code != 200:
             logging.error("GitHub Issue #{} not found. Check the GitHub issue number if correct.".format(issue.fields.summary[firstIndex:lastIndex]))
         else:
             logging.debug("GitHub Issue found")
             data = json.loads(response.text)
+            body = md_to_jira.markdown_to_jira(data["body"])
             # Processing response to the defined Python object for further processing
-            ghIssue = IntegratedIssue(data["id"], data["title"], data["body"], data["number"], data["labels"], data["state"], data["assignee"], data["assignees"], data["html_url"], config.areaMappers)
+            ghIssue = IntegratedIssue(data["id"], data["title"], body, data["number"], data["labels"], data["state"], data["assignee"], data["assignees"], data["html_url"], config.areaMappers)
             #Preparing JIRA object for update
             jiraIssue = {
                             'project': {'key':config.jiraProject},

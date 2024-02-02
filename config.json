@@ -5,7 +5,10 @@
             "team/core" : 1404,
             "team/cloud-native" : 1462,
             "team/continuous-testing" : 1403,
-            "team/ui" : 1401
+            "team/ui" : 1401,
+            "team/clients" : 4373,
+            "team/iam" : 4372,
+            "team/shared" : 4374
         },
     "gitHubBaseUrl" : "https://api.github.com/repos",
     "gitHubOrgName" : "/keycloak",
