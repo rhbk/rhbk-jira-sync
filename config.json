@@ -6,9 +6,9 @@
             "team/cloud-native" : 1462,
             "team/continuous-testing" : 1403,
             "team/ui" : 1401,
-            "team/clients" : 4373,
-            "team/iam" : 4372,
-            "team/shared" : 4374
+            "team/core-clients" : 4373,
+            "team/core-iam" : 4372,
+            "team/core-shared" : 4374
         },
     "gitHubBaseUrl" : "https://api.github.com/repos",
     "gitHubOrgName" : "/keycloak",
