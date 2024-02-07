@@ -8,7 +8,8 @@
             "team/ui" : 1401,
             "team/core-clients" : 4373,
             "team/core-iam" : 4372,
-            "team/core-shared" : 4374
+            "team/core-shared" : 4374,
+            "team/cross-dc" : 3676
         },
     "gitHubBaseUrl" : "https://api.github.com/repos",
     "gitHubOrgName" : "/keycloak",
