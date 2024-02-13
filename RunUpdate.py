@@ -34,7 +34,10 @@ try:
         else:
             logging.debug("GitHub Issue found")
             data = json.loads(response.text)
-            body = md_to_jira.markdown_to_jira(data["body"])
+            if (data["body"] != None):
+                body = md_to_jira.markdown_to_jira(data["body"])
+            else:
+                body=data["body"]
             # Processing response to the defined Python object for further processing
             ghIssue = IntegratedIssue(data["id"], data["title"], body, data["number"], data["labels"], data["state"], data["assignee"], data["assignees"], data["html_url"], config.areaMappers)
             #Preparing JIRA object for update
