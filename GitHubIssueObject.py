@@ -12,7 +12,7 @@ class IntegratedIssue:
         self.team = ""
         self.status = state
         for x in labels:
-            self.labels.append(x["name"])
+            self.labels.append(x["name"].replace(" ","-"))
         self.resolveTeam(mapper)
 
     def resolveTeam(self, mapper):
