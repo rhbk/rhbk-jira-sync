@@ -43,7 +43,7 @@ try:
             #Preparing JIRA object for update
             jiraIssue = {
                             'project': {'key':config.jiraProject},
-                            'summary': "[{}{}{}] {}".format(config.jiraGitPrefix, ghIssue.number, config.jiraGitSuffix, ghIssue.title),
+                            'summary': "{} [{}{}{}]".format(ghIssue.title, config.jiraGitPrefix, ghIssue.number, config.jiraGitSuffix),
                             'description' : str(ghIssue.body),
                             'labels' : ghIssue.resolveLabels([]),
                         }
