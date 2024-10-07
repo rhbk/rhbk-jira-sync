@@ -21,7 +21,7 @@
             "team/ui" : ["team/ui"],
             "team/core-clients" : ["team/core-clients"],
             "team/core-iam" : ["team/core-iam"],
-            "team/core-shared" : ["team/core-iam", "team/core-clients"],
+            "team/core-shared" : ["team/core-shared"],
             "team/cross-dc" : ["team/sre"],
             "team/sre" : ["team/sre"]
         },
