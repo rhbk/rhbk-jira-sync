@@ -28,6 +28,18 @@ class IntegratedIssue:
         for label in self.labels:
             labels.append("GHI/{}".format(label))
         return labels
+    
+    def resolveTeamComponents(self, currentComps, teamMapper):
+        newComponents = []
+        for comps in currentComps:
+            if "team/" not in comps.name:
+                newComponents.append(comps)
+        for label in self.labels:
+            if label in teamMapper.keys():
+                for team in teamMapper[label]:
+                    newComponents.append({"name" : team})
+        return newComponents
+
 
 # Helper class to consume Configuration file called config.json
 class ConfigDigest:
@@ -36,6 +48,7 @@ class ConfigDigest:
         configFile = open('config.json')
         config = json.loads(configFile.read())
         self.areaMappers = config["areaMapper"]
+        self.teamToComponentMapper = config["teamToComponentMapper"]
         self.jiraBaseUrl = config["jiraBaseUrl"]
         self.gitBaseUrl = config["gitHubBaseUrl"]
         self.gitHubOrgName = config["gitHubOrgName"]

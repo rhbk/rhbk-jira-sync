@@ -60,6 +60,7 @@ try:
                 jira.add_simple_link(issue, {"url":issueGitHubLink, "title":"Link to original GitHub issue"})
             #Updating JIRA issue
             issue.update(jiraIssue)
+            issue.update(fields={"components": ghIssue.resolveTeamComponents(issue.fields.components, config.teamToComponentMapper)})
             if (issue.fields.status.name != "Closed" and ghIssue.status == "closed"):
                 jira.transition_issue(issue, "Closed")
             logging.info("GitHub issue number {} succesfully updated under JIRA issue {}".format(ghIssue.number, issue.key))

@@ -12,6 +12,19 @@
             "team/cross-dc" : 3676,
             "team/sre" : 3676
         },
+    "teamToComponentMapper" :
+        {
+            "team/store" : ["team/sre"], 
+            "team/core" : ["team/core-iam", "team/core-clients"],
+            "team/cloud-native" : ["team/cloud-native"],
+            "team/continuous-testing" : ["team/continuous-testing"],
+            "team/ui" : ["team/ui"],
+            "team/core-clients" : ["team/core-clients"],
+            "team/core-iam" : ["team/core-iam"],
+            "team/core-shared" : ["team/core-iam", "team/core-clients"],
+            "team/cross-dc" : ["team/sre"],
+            "team/sre" : ["team/sre"]
+        },
     "gitHubBaseUrl" : "https://api.github.com/repos",
     "gitHubOrgName" : "/keycloak",
     "gitHubRepository" : "/keycloak",
