@@ -26,7 +26,7 @@ try:
     search = jira.search_issues(config.jiraUpdateQuery.format(config.jiraProject, config.jiraGitPrefix))
     # Iterating thru found issues
     for issue in search:
-        firstIndex = issue.fields.summary.find("#") + 1
+        firstIndex = issue.fields.summary.find(config.jiraGitPrefix) + len(config.jiraGitPrefix)
         lastIndex = issue.fields.summary.find("]")
         response = requests.get("{}{}{}/issues/{}".format(config.gitBaseUrl, config.gitHubOrgName, "/keycloak", issue.fields.summary[firstIndex:lastIndex]), headers={'Accept':'application/vnd.github.full+json'})
         if response.status_code != 200:
