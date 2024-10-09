@@ -32,6 +32,7 @@ Here is step by step how to run the integration locally on need basis:
 | Config field           |                 Description                        |
 | :--  | :-- |
 | areaMapper | Dictionary containing labels from GitHub which are base for determining team in JIRA represented by team id|
+| teamToComponentMapper | Mapping GH labels to corresponding components in JIRA. One GH label could add multiple components in JIRA |
 | statusMapper | Mapping status codes from your JIRA instance |
 | gitHubBaseUrl | URL to GitHub instance |
 | gitHubOrgName | Name of the organisation in GitHub, where the repository lies with "/" as prefix |
