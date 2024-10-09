@@ -1,6 +1,6 @@
 
 # GitHub to JIRA Integration
-*This is a README file for GitHub to JIRA Integration for RH CIAM-K*
+*This is a README file for GitHub to JIRA Integration for RHBK and Keycloak*
 
 This script takes information from GitHub issues defined in JIRA by predifined format in config.json and update them into the JIRA. It takes either full ownership of the field or partial ownership of the field.
 
@@ -19,6 +19,8 @@ All other field, which this integration doesn't own are fully editable by user i
  - Labels (partial ownership)
  - Componenents (partial ownership, without GHI prefix)
  - Links (partial ownership)
+
+ *Note: For component field, the script updates those with "team/" labels. Others are kept in JIRA only.*
  
  ## Step by step instructions
 Here is step by step how to run the integration locally on need basis:
