@@ -17,6 +17,7 @@ All other field, which this integration doesn't own are fully editable by user i
  - Team (full
    ownership) 
  - Labels (partial ownership)
+ - Componenents (partial ownership, without GHI prefix)
  - Links (partial ownership)
  
  ## Step by step instructions
