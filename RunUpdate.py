@@ -28,7 +28,7 @@ try:
     for issue in search:
         firstIndex = issue.fields.summary.find(config.jiraGitPrefix) + len(config.jiraGitPrefix)
         lastIndex = issue.fields.summary.find("]", firstIndex)
-        response = requests.get("{}{}{}/issues/{}".format(config.gitBaseUrl, config.gitHubOrgName, "/keycloak", issue.fields.summary[firstIndex:lastIndex]), headers={'Accept':'application/vnd.github.full+json', 'Authorization': 'Bearer {}'.format(config.ghToken)})
+        response = requests.get("{}{}{}/issues/{}".format(config.gitBaseUrl, config.gitHubOrgName, "/keycloak", issue.fields.summary[firstIndex:lastIndex]), headers={'Accept':'application/vnd.github.full+json'})
         if response.status_code != 200:
             logging.error("GitHub Issue #{} not found. Check the GitHub issue number if correct.".format(issue.fields.summary[firstIndex:lastIndex]))
         else:
