@@ -23,12 +23,12 @@ try:
     jira = JIRA(config.jiraBaseUrl, token_auth=config.jiraToken)
     logging.info("Integration run at {}".format(datetime.datetime.now()))
     #Search for issues in desired project, the search is trying to find the prefixes
-    search = jira.search_issues(config.jiraUpdateQuery.format(config.jiraProject, config.jiraGitPrefix))
+    search = jira.search_issues(config.jiraUpdateQuery.format(config.jiraProject, config.jiraGitPrefix), maxResults=False)
     # Iterating thru found issues
     for issue in search:
         firstIndex = issue.fields.summary.find(config.jiraGitPrefix) + len(config.jiraGitPrefix)
-        lastIndex = issue.fields.summary.find("]")
-        response = requests.get("{}{}{}/issues/{}".format(config.gitBaseUrl, config.gitHubOrgName, "/keycloak", issue.fields.summary[firstIndex:lastIndex]), headers={'Accept':'application/vnd.github.full+json'})
+        lastIndex = issue.fields.summary.find("]", firstIndex)
+        response = requests.get("{}{}{}/issues/{}".format(config.gitBaseUrl, config.gitHubOrgName, "/keycloak", issue.fields.summary[firstIndex:lastIndex]), headers={'Accept':'application/vnd.github.full+json', 'Authorization': 'Bearer {}'.format(config.ghToken)})
         if response.status_code != 200:
             logging.error("GitHub Issue #{} not found. Check the GitHub issue number if correct.".format(issue.fields.summary[firstIndex:lastIndex]))
         else:

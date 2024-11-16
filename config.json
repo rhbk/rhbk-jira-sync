@@ -34,5 +34,6 @@
     "jiraGitSuffix" : "",
     "jiraProject" : "RHBK",
     "loggingLevel" : "INFO",
-    "jiraUpdateQuery" : "Project = {} AND Summary ~ '{}' AND (resolutiondate >= -30d OR status != Closed)"
+    "jiraUpdateQuery" : "Project = {} AND Summary ~ '{}' AND (resolutiondate >= -30d OR status != Closed)",
+    "ghToken" : "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"
 }

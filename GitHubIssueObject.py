@@ -61,4 +61,5 @@ class ConfigDigest:
         self.jiraUpdateQuery = config["jiraUpdateQuery"]
         self.gitHubLinkBaseUrl = config["gitHubLinkBaseUrl"]
         self.gitHubRepository = config["gitHubRepository"]
+        self.ghToken = config["ghToken"]
 
