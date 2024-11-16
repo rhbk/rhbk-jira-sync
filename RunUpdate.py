@@ -30,7 +30,7 @@ try:
         lastIndex = issue.fields.summary.find("]", firstIndex)
         response = requests.get("{}{}{}/issues/{}".format(config.gitBaseUrl, config.gitHubOrgName, "/keycloak", issue.fields.summary[firstIndex:lastIndex]), headers={'Accept':'application/vnd.github.full+json'})
         if response.status_code != 200:
-            logging.error("GitHub Issue #{} not found. Check the GitHub issue number if correct.".format(issue.fields.summary[firstIndex:lastIndex]))
+            logging.error("GitHub Issue #{} not updated. Check the GitHub issue number if correct. Error message : {}".format(issue.fields.summary[firstIndex:lastIndex], response.text))
         else:
             logging.debug("GitHub Issue found")
             data = json.loads(response.text)
