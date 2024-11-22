@@ -53,6 +53,7 @@ class ConfigDigest:
         self.gitBaseUrl = config["gitHubBaseUrl"]
         self.gitHubOrgName = config["gitHubOrgName"]
         self.jiraToken = os.getenv('JIRA_PAT')
+        self.ghToken = os.getenv('GH_PAT')
         self.jiraQuery = "project = '{}' and summary ~ '{}{}{}'"
         self.jiraGitPrefix = config["jiraGitPrefix"]
         self.jiraGitSuffix = config["jiraGitSuffix"]

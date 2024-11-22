@@ -19,5 +19,6 @@ jobs:
           python RunUpdate.py
         env:
           JIRA_PAT: ${{ secrets.JIRA_PAT }}
+          GH_PAT: ${{ secrets.GITHUB_TOKEN }}
       - run:
           cat GitToJira.log >> $GITHUB_STEP_SUMMARY
