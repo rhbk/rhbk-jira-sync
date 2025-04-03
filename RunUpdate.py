@@ -11,6 +11,7 @@ import logging
 import datetime
 import sys
 import md_to_jira
+from time import sleep
 
 # Loading configuration for the run
 config = ConfigDigest()
@@ -64,6 +65,7 @@ try:
             if (issue.fields.status.name != "Closed" and ghIssue.status == "closed"):
                 jira.transition_issue(issue, "Closed")
             logging.info("GitHub issue number {} succesfully updated under JIRA issue {}".format(ghIssue.number, issue.key))
+            sleep(config.jiraRateLimitSecondsTimeout)
     jira.close()
     logging.info("Integration run succesfull!")
 
