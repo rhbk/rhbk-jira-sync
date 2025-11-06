@@ -33,7 +33,7 @@ class IntegratedIssue:
         newComponents = []
         for comps in currentComps:
             if "team/" not in comps.name:
-                newComponents.append(comps)
+                newComponents.append({'name':comps.name})
         for label in self.labels:
             if label in teamMapper.keys():
                 for team in teamMapper[label]:

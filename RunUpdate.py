@@ -11,7 +11,8 @@ import logging
 import datetime
 import sys
 import md_to_jira
-from time import sleep
+import time
+from jira.client import translate_resource_args
 
 # Loading configuration for the run
 config = ConfigDigest()
@@ -22,6 +23,10 @@ logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 try:
     # Connecting to the configured JIRA instance
     jira = JIRA(config.jiraBaseUrl, token_auth=config.jiraToken)
+    jira._options['agile_rest_path'] = 'agile'
+    jira._options['agile_rest_api_version'] = '1.0'
+    jira._options['max_retries'] = 3
+    jira._options['delay_between_retries'] = 100
     logging.info("Integration run at {}".format(datetime.datetime.now()))
     #Search for issues in desired project, the search is trying to find the prefixes
     search = jira.search_issues(config.jiraUpdateQuery.format(config.jiraProject, config.jiraGitPrefix), maxResults=False)
@@ -65,11 +70,12 @@ try:
             if (issue.fields.status.name != "Closed" and ghIssue.status == "closed"):
                 jira.transition_issue(issue, "Closed")
             logging.info("GitHub issue number {} succesfully updated under JIRA issue {}".format(ghIssue.number, issue.key))
-            sleep(config.jiraRateLimitSecondsTimeout)
     jira.close()
     logging.info("Integration run succesfull!")
-
+    
 except Exception as error:
     logging.error(error)
     jira.close()
     sys.exit(1)
+
+
