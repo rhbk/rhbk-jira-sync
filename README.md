@@ -13,7 +13,7 @@ All other field, which this integration doesn't own are fully editable by user i
 ## Integrated fields are:
 
  - Summary (full ownership) 
- - Description (full ownership) 
+ - Description (full ownership) [Depecated]
  - Team (full
    ownership) 
  - Labels (partial ownership)

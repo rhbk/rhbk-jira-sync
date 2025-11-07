@@ -50,8 +50,8 @@ try:
             jiraIssue = {
                             'project': {'key':config.jiraProject},
                             'summary': "{} [{}{}{}]".format(ghIssue.title, config.jiraGitPrefix, ghIssue.number, config.jiraGitSuffix),
-                            'description' : str(ghIssue.body),
-                            'labels' : ghIssue.resolveLabels([]),
+                            #'description' : str(ghIssue.body), commented out, so description field won't be updated in JIRA
+                            'labels' : ghIssue.resolveLabels([])
                         }
             jiraIssue['customfield_12313240'] = str(ghIssue.team)
             jiraIssue["labels"] = ghIssue.resolveLabels(issue.fields.labels)
