@@ -29,11 +29,12 @@
     "gitHubOrgName" : "/keycloak",
     "gitHubRepository" : "/keycloak",
     "gitHubLinkBaseUrl" : "https://github.com/{}/{}/issues/{}",
-    "jiraBaseUrl" : "https://issues.redhat.com",
+    "jiraBaseUrl" : "https://redhat.atlassian.net",
     "jiraGitPrefix" : "GHI#",
     "jiraGitSuffix" : "",
     "jiraProject" : "RHBK",
     "loggingLevel" : "INFO",
     "jiraUpdateQuery" : "Project = {} AND Summary ~ '{}' AND (resolutiondate >= -30d OR status != Closed)",
-    "jiraRateLimitSecondsTimeout" : 1
+    "jiraRateLimitSecondsTimeout" : 1,
+    "jiraUserName" : "pvlha@redhat.com"
 }

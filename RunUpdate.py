@@ -13,6 +13,7 @@ import sys
 import md_to_jira
 import time
 from jira.client import translate_resource_args
+from marklassian import markdown_to_adf
 
 # Loading configuration for the run
 config = ConfigDigest()
@@ -22,11 +23,12 @@ logging.basicConfig(filename='GitToJira.log', encoding='utf-8', level=config.log
 logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 try:
     # Connecting to the configured JIRA instance
-    jira = JIRA(config.jiraBaseUrl, token_auth=config.jiraToken)
-    jira._options['agile_rest_path'] = 'agile'
-    jira._options['agile_rest_api_version'] = '1.0'
-    jira._options['max_retries'] = 3
-    jira._options['delay_between_retries'] = 100
+    jira_options = {
+         'server': config.jiraBaseUrl,
+         'rest_api_version': '3',
+         'max_retries': '3'
+    }
+    jira = JIRA(options=jira_options, basic_auth=(config.jiraUserName,config.jiraToken))
     logging.info("Integration run at {}".format(datetime.datetime.now()))
     #Search for issues in desired project, the search is trying to find the prefixes
     search = jira.search_issues(config.jiraUpdateQuery.format(config.jiraProject, config.jiraGitPrefix), maxResults=False)
@@ -40,20 +42,16 @@ try:
         else:
             logging.debug("GitHub Issue found")
             data = json.loads(response.text)
-            if (data["body"] != None):
-                body = md_to_jira.markdown_to_jira(data["body"])
-            else:
-                body=data["body"]
             # Processing response to the defined Python object for further processing
-            ghIssue = IntegratedIssue(data["id"], data["title"], body, data["number"], data["labels"], data["state"], data["assignee"], data["assignees"], data["html_url"], config.areaMappers)
+            ghIssue = IntegratedIssue(data["id"], data["title"], data["number"], data["labels"], data["state"], data["assignee"], data["assignees"], data["html_url"], config.areaMappers, data["body"])
             #Preparing JIRA object for update
             jiraIssue = {
-                            'project': {'key':config.jiraProject},
+                            #'project': {'key':config.jiraProject},
                             'summary': "{} [{}{}{}]".format(ghIssue.title, config.jiraGitPrefix, ghIssue.number, config.jiraGitSuffix),
                             #'description' : str(ghIssue.body), commented out, so description field won't be updated in JIRA
                             'labels' : ghIssue.resolveLabels([])
                         }
-            jiraIssue['customfield_12313240'] = str(ghIssue.team)
+            #jiraIssue['customfield_12313240'] = str(ghIssue.team)
             jiraIssue["labels"] = ghIssue.resolveLabels(issue.fields.labels)
             # Checking, if the link to the original GitHub Issue is already in JIRA, otherwise adding it. This needs to be done to avoiding duplicated links
             issueGitHubLink = config.gitHubLinkBaseUrl.format(config.gitHubOrgName, config.gitHubRepository, ghIssue.number)

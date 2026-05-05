@@ -2,7 +2,7 @@ import json
 import os
 
 class IntegratedIssue:
-    def __init__(self, id, title, body, number, labels, state, assignee, assignees, url, mapper):
+    def __init__(self, id, title, number, labels, state, assignee, assignees, url, mapper, body):
         self.id = id
         self.title = title
         self.body = body
@@ -63,5 +63,6 @@ class ConfigDigest:
         self.gitHubLinkBaseUrl = config["gitHubLinkBaseUrl"]
         self.gitHubRepository = config["gitHubRepository"]
         self.jiraRateLimitSecondsTimeout = config["jiraRateLimitSecondsTimeout"]
+        self.jiraUserName = config["jiraUserName"]
     
 
